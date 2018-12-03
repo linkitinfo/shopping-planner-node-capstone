@@ -1,0 +1,12 @@
+{
+  "web": {
+    "client_id": "199987557104-tcjk9jjsg9i7bbu1ke2r68gpdf0ckvnp.apps.googleusercontent.com",
+    "project_id": "shopping-planner-node-capstone",
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://www.googleapis.com/oauth2/v3/token",
+    "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+    "client_secret": "TV0pvR-Qp_GK6KJcZLZFbX9Q",
+    "redirect_uris": ["http://localhost:8080/auth/google/callback"],
+    "javascript_origins": ["http://localhost:8080"]
+  }
+}

@@ -1,0 +1,36 @@
+<nav class="navbar navbar-expand-sm navbar-light bg-light mb-4">
+  <div class="container">
+    <a class="navbar-brand" href="/"> Your webstie </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#mobile-nav"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mobile-nav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item"><a class="nav-link" href="/"> Linkss </a></li>
+      </ul>
+      <% if(isAuthenticated){ %>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/profile"><%= user.name %> </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout"> Logout </a>
+        </li>
+      </ul>
+      <% } else{ %>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-link" href="/register"> Sign Up </a>
+        </li>
+        <li class="nav-item"><a class="nav-link" href="/login"> Login </a></li>
+      </ul>
+      <% } %>
+    </div>
+  </div>
+</nav>
