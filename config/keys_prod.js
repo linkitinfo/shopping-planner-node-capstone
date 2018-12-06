@@ -7,5 +7,6 @@ module.exports = {
   googleCallback: process.env.GOOGLE_CALLBACK,
   facebookKey: process.env.FACEBOOK_KEY,
   facebookSecret: process.env.FACEBOOK_SECRET,
-  facebookCallback: process.env.FACEBOOK_CALLBACK
+  facebookCallback: process.env.FACEBOOK_CALLBACK,
+  endpoint: process.env.ENDPOINT
 };

@@ -34,14 +34,6 @@ function mailSender(
 
 /**
 |--------------------------------------------------
-| Middlewares
-|--------------------------------------------------
-*/
-
-// end of middlewares
-
-/**
-|--------------------------------------------------
 | Mongoose models
 |--------------------------------------------------
 */
@@ -111,7 +103,7 @@ router.post("/register", async (req, res) => {
       "yourmail@website.com",
       "active  email",
       "Verifay your account",
-      ` <a href="https://youwebstie.com/activeemail?token=${
+      ` <a href="${require("./config/keys").endpoint}/activeemail?token=${
         newUser.activeEmailToken
       }">Verify accaount</a>`
     )
@@ -159,6 +151,23 @@ router.post("/login", async (req, res, next) => {
 
 /**
 |--------------------------------------------------
+| Activing email
+|--------------------------------------------------
+*/
+
+router.get("/verifyemail/:activeToken", async (req, res) => {
+  let user = await User.findOne({ activeToken: req.params.activeToken });
+  if (user) {
+    user.active = true;
+    user.activeEmailToken = "";
+    let newUser = await user.save();
+    return res.status(200).json(newUser);
+  }
+  return res.staus(404).json({ err: "Not found" });
+});
+
+/**
+|--------------------------------------------------
 | Logout
 |--------------------------------------------------
 */
@@ -189,7 +198,7 @@ router.post("/forgot-password", async (req, res) => {
         "youremai@website.com",
         "reset password",
         "Verifay your account",
-        ` <a href="https:/youwebstie.com/reset-password?token=${
+        ` <a href="${require("./config/keys").endpoint}/reset-password?token=${
           newUser.resetPasswordToken
         }">reset passowrd</a>`
       )
