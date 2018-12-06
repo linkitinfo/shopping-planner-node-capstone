@@ -101,7 +101,7 @@ router.post("/register", async (req, res) => {
       "yourmail@website.com",
       "active  email",
       "Verifay your account",
-      ` <a href="${require("./config/keys").endpoint}/activeemail?token=${
+      ` <a href="${require("../config/keys").endpoint}/activeemail?token=${
         newUser.activeEmailToken
       }">Verify accaount</a>`
     )
