@@ -26,7 +26,7 @@ passport.use(
     {
       clientID: keys.googleKey,
       clientSecret: keys.googleSecret,
-      callbackURL: keys.googleCallback
+      callbackURL: keys.endpoint + "/auth/google/callback"
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(profile);
@@ -84,7 +84,7 @@ passport.use(
     {
       clientID: keys.facebookKey,
       clientSecret: keys.facebookSecret,
-      callbackURL: keys.facebookCallback,
+      callbackURL: keys.endpoint + "/auth/facebook/callback",
       profileFields: ["id", "emails", "name"]
     },
     function(accessToken, refreshToken, profile, done) {
