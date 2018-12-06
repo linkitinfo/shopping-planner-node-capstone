@@ -2,7 +2,7 @@
   "name": "shopping-planner-node-capstone",
   "version": "1.0.0",
   "description": "",
-  "main": "new_server.js",
+  "main": "server.js",
   "dependencies": {
     "@sendgrid/mail": "^6.3.1",
     "bcryptjs": "^2.4.3",
@@ -39,7 +39,7 @@
   "scripts": {
     "test": "mocha",
     "start": "node server.js",
-    "dev": "nodemon new_server.js"
+    "dev": "nodemon server.js"
   },
   "repository": {
     "type": "git",

@@ -75,8 +75,6 @@ router.post("/register", async (req, res) => {
     valid.error.details.forEach(item => {
       errors[item.path] = true;
     });
-    console.log(valid.error.details);
-    console.log(errors);
     return res.render("pages/register", { user: req.body, errors });
   }
   //   Check user exist or not
@@ -99,7 +97,7 @@ router.post("/register", async (req, res) => {
   const createdUser = await newUser.save();
   sgMail.send(
     mailSender(
-      "createdUser.email",
+      createdUser.email,
       "yourmail@website.com",
       "active  email",
       "Verifay your account",
@@ -118,7 +116,7 @@ router.post("/register", async (req, res) => {
 */
 
 router.get("/login", async (req, res) => {
-  res.render("pages/login", { active: true });
+  res.render("pages/login", { active: true, noUser: false, validError: false });
 });
 
 router.post("/login", async (req, res, next) => {
@@ -126,11 +124,19 @@ router.post("/login", async (req, res, next) => {
   // Validation request
   const valid = loginValiadtion.validate({ email, password });
   if (valid.error !== null) {
-    return res.status(400).json(valid.error);
+    return res.render("pages/login", {
+      active: true,
+      noUser: false,
+      validError: true
+    });
   }
   User.findOne({ email }).then(user => {
     if (!user) {
-      return res.status(404).json({ error: "User not found" });
+      return res.render("pages/login", {
+        active: true,
+        noUser: true,
+        validError: false
+      });
     }
     if (!user.active) {
       res.render("pages/login", { active: false });
@@ -141,7 +147,6 @@ router.post("/login", async (req, res, next) => {
       }
       if (isValid) {
         req.logIn(user, function(err) {
-          console.log(err);
           return res.redirect("/");
         });
       }

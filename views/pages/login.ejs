@@ -55,6 +55,14 @@
             Your account not active, go to your email, and active your account.
           </div>
           <% } %>
+          <div></div>
+          <% if(noUser){ %>
+          <div class="invalid-feedback">No user found</div>
+          <% } %>
+          <div></div>
+          <% if(validError){ %>
+          <div class="invalid-feedback">Validation error</div>
+          <% } %>
         </form>
       </div>
       <div class="card-footer">
